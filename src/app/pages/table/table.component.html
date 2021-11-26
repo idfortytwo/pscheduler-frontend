@@ -1,0 +1,21 @@
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Task configs</h3>
+  <div class="card-body">
+    <div id="table" class="app-table">
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <tr>
+          <th class="text-center">ID</th>
+          <th class="text-center">Command args</th>
+          <th class="text-center">Trigger type</th>
+          <th class="text-center">Trigger args</th>
+        </tr>
+        <tr *ngFor="let taskConfig of taskConfigs; let id = index">
+          <td>{{taskConfig.task_config_id}}</td>
+          <td>{{taskConfig.command_args}}</td>
+          <td>{{taskConfig.trigger_type}}</td>
+          <td>{{taskConfig.trigger_args}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

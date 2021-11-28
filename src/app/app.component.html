@@ -1,1 +1,25 @@
-<router-outlet></router-outlet>
+<mat-toolbar>
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  Process scheduler
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" mode="side" opened="true">
+    <button mat-button class="menu-button">
+      <mat-icon>settings</mat-icon>
+      <span>Task Configs</span>
+    </button>
+    <button mat-button class="menu-button">
+      <mat-icon>task_alt</mat-icon>
+      <span>Task Executors</span>
+    </button>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

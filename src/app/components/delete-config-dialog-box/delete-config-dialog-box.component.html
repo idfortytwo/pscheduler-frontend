@@ -1,0 +1,8 @@
+<h2 mat-dialog-title><strong>Delete task config with ID {{ localData.task_config_id }}?</strong></h2>
+<div mat-dialog-content>
+  This will delete the executor too
+</div>
+<div mat-dialog-actions class="dialog-buttons">
+  <button mat-button (click)="doAction()" color="warn" mat-flat-button>Delete</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button>Cancel</button>
+</div>

@@ -29,11 +29,11 @@
 
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef>Actions</th>
-          <td mat-cell *matCellDef="let row" >
-            <button mdbbtn="Edit" class="action-button">
+          <td mat-cell *matCellDef="let row" class="action-link">
+            <button mat-icon-button class="action-button">
               <mat-icon>edit</mat-icon>
             </button>
-            <button mdbbtn="Edit" class="action-button">
+            <button mat-icon-button color="warn" class="action-button" (click)="openDeleteDialog(row)">
               <mat-icon>delete</mat-icon>
             </button>
           </td>

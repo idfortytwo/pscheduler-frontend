@@ -8,15 +8,15 @@ import { TaskConfig } from "../../shared/data-models";
   styleUrls: ['./delete-config-dialog-box.component.css']
 })
 export class DeleteConfigDialogBoxComponent {
-  localData: any;
+  localTaskConfig: TaskConfig;
 
   constructor(public dialogRef: MatDialogRef<DeleteConfigDialogBoxComponent>,
-              @Optional() @Inject(MAT_DIALOG_DATA) public data: TaskConfig) {
-      this.localData = {...data};
+              @Optional() @Inject(MAT_DIALOG_DATA) public taskConfig: TaskConfig) {
+      this.localTaskConfig = taskConfig;
     }
 
   doAction(){
-    this.dialogRef.close({ event: 'Delete', data: this.localData });
+    this.dialogRef.close({ event: 'Delete', data: this.localTaskConfig });
   }
 
   closeDialog(){

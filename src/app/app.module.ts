@@ -17,12 +17,14 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatInputModule } from "@angular/material/input";
 import { FormsModule } from "@angular/forms";
+import { TaskExecutorTableComponent } from './pages/task-executor-table/task-executor-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskConfigTableComponent,
-    DeleteConfigDialogBoxComponent
+    DeleteConfigDialogBoxComponent,
+    TaskExecutorTableComponent
   ],
   imports: [
     BrowserModule,

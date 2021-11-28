@@ -18,4 +18,9 @@ export class ApiService {
   getTaskConfig(taskConfigID: number): Observable<TaskConfig> {
     return this.http.get<TaskConfig>(this.baseUrl + '/task_config/' + taskConfigID)
   }
+
+  deleteTaskConfigs(taskConfigID: number): Observable<{'deleted': number}> {
+    console.log('deleting ' + taskConfigID)
+    return this.http.delete<{'deleted': number}>(this.baseUrl + '/task_config/' + taskConfigID)
+  }
 }

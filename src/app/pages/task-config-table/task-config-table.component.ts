@@ -3,7 +3,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { TaskConfig } from "../../shared/data-models";
 import { ApiService } from "../../shared/api.service";
 import { MatDialog } from "@angular/material/dialog";
-import { DeleteConfigDialogBoxComponent } from "../../components/delete-config-dialog-box/delete-config-dialog-box.component";
+import { DeleteRowDialogBoxComponent } from "../../components/delete-row-dialog-box/delete-row-dialog-box.component";
 
 @Component({
   selector: 'app-task-config-table',
@@ -27,19 +27,24 @@ export class TaskConfigTableComponent implements OnInit {
   }
 
   openDeleteDialog(row: TaskConfig) {
-    const dialog = this.dialog.open(DeleteConfigDialogBoxComponent, { data: row })
+    const title = "Delete task config with ID " + row.task_config_id + "?"
+    const descr = "This will delete the executor too"
+
+    const dialog = this.dialog.open(DeleteRowDialogBoxComponent,
+      { data: { title: title, descr: descr, taskConfigID: row.task_config_id } })
+
     dialog.afterClosed().subscribe(result => {
       if (result && result.event == 'Delete') {
-        this.deleteRowData(result.data)
+        this.deleteRow(result.taskConfigID)
       }
     })
   }
 
-  deleteRowData(row: TaskConfig) {
-    this.api.deleteTaskConfigs(row.task_config_id).subscribe(() => {})
+  deleteRow(taskConfigID: number) {
+    this.api.deleteTaskConfigs(taskConfigID).subscribe(() => {})
 
     this.dataSource.data = this.dataSource.data.filter((value: any) => {
-      return value.task_config_id != row.task_config_id;
+      return value.task_config_id != taskConfigID;
     })
     this.dataSource._updateChangeSubscription()
   }

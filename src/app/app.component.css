@@ -1,0 +1,33 @@
+mat-toolbar {
+  background: #232f34;
+  color: white;
+}
+
+mat-sidenav {
+  /*margin: 16px;*/
+  width: 200px;
+  border-right: none;
+  background: #344955;
+  color: white;
+  /*border-radius: 10px;*/
+  padding: 10px;
+  text-align: center;
+}
+
+.content {
+  height: calc(100vh - 65px);
+}
+
+
+.menu-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+}
+
+mat-icon {
+  margin-right: 8px;
+}
+

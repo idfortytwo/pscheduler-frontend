@@ -1,32 +1,34 @@
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { ToastrModule } from "ngx-toastr";
+import { BrowserModule } from '@angular/platform-browser';
 
-import { SidebarModule } from './sidebar/sidebar.module';
-import { NavbarModule} from './shared/navbar/navbar.module';
-
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AppRoutes } from './app.routing';
-
-import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
-import { HttpClientModule } from "@angular/common/http";
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatListModule } from "@angular/material/list";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
+import { TaskConfigTableComponent } from './pages/task-config-table/task-config-table.component';
+import {HttpClientModule} from "@angular/common/http";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainLayoutComponent
+    TaskConfigTableComponent
   ],
   imports: [
+    BrowserModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(AppRoutes,{
-      useHash: true
-    }),
-    SidebarModule,
-    NavbarModule,
-    ToastrModule.forRoot(),
+    MatSidenavModule,
+    MatListModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
     HttpClientModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

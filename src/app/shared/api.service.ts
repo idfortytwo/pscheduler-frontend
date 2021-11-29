@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
-import {TaskConfig, TaskExecutor} from "./data-models";
+import { Task, TaskExecutor } from "./data-models";
 import { HttpClient } from "@angular/common/http";
 
 @Injectable({
@@ -11,27 +11,33 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getTaskConfigs(): Observable<TaskConfig[]> {
-    return this.http.get<TaskConfig[]>(this.baseUrl + '/task_config/')
+  getTasks(): Observable<{'tasks': Task[]}> {
+    return this.http.get<{'tasks': Task[]}>(
+       this.baseUrl + '/task/')
   }
 
-  getTaskConfig(taskConfigID: number): Observable<TaskConfig> {
-    return this.http.get<TaskConfig>(this.baseUrl + '/task_config/' + taskConfigID)
+  getTask(taskID: number): Observable<{'task': Task}> {
+    return this.http.get<{'task': Task}>(
+       this.baseUrl + '/task/' + taskID)
   }
 
-  getTaskExecutors(): Observable<TaskExecutor[]> {
-    return this.http.get<TaskExecutor[]>(this.baseUrl + '/executor/')
+  deleteTask(taskID: number): Observable<{'task_id': number}> {
+    return this.http.delete<{'task_id': number}>(
+       this.baseUrl + '/task/' + taskID)
   }
 
-  deleteTaskConfigs(taskConfigID: number): Observable<{'deleted': number}> {
-    return this.http.delete<{'deleted': number}>(this.baseUrl + '/task_config/' + taskConfigID)
+  getTaskExecutors(): Observable<{'task_executors': TaskExecutor[]}> {
+    return this.http.get<{'task_executors': TaskExecutor[]}>(
+       this.baseUrl + '/executor/')
   }
 
-  runExecutor(taskConfigID: number) {
-    return this.http.post(this.baseUrl + '/run_executor/' + taskConfigID, {})
+  runExecutor(taskID: number): Observable<{'task_id': number}> {
+    return this.http.post<{'task_id': number}>(
+       this.baseUrl + '/run_executor/' + taskID, {})
   }
 
-  stopExecutor(taskConfigID: number) {
-    return this.http.post(this.baseUrl + '/stop_executor/' + taskConfigID, {})
+  stopExecutor(taskID: number): Observable<{'task_id': number}> {
+    return this.http.post<{'task_id': number}>(
+       this.baseUrl + '/stop_executor/' + taskID, {})
   }
 }

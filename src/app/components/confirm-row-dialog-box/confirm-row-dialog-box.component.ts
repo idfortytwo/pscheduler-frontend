@@ -9,20 +9,20 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 export class ConfirmRowDialogBoxComponent {
   title: string
   descr: string
-  taskConfigID: number
+  taskID: number
 
   constructor(public dialogRef: MatDialogRef<ConfirmRowDialogBoxComponent>,
               @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
       this.title = data.title
       this.descr = data.descr
-      this.taskConfigID = data.taskConfigID
+      this.taskID = data.taskID
     }
 
   doAction(){
-    this.dialogRef.close({ event: 'Delete', taskConfigID: this.taskConfigID });
+    this.dialogRef.close({ event: 'Confirm', taskID: this.taskID });
   }
 
   closeDialog(){
-    this.dialogRef.close({ event:' Cancel' });
+    this.dialogRef.close({ event: 'Cancel' });
   }
 }

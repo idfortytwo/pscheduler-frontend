@@ -9,7 +9,7 @@ import { MatListModule } from "@angular/material/list";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
-import { TaskConfigTableComponent } from './pages/task-config-table/task-config-table.component';
+import { TaskTableComponent } from './pages/task-table/task-table.component';
 import { HttpClientModule } from "@angular/common/http";
 import { MatTableModule } from "@angular/material/table";
 import { ConfirmRowDialogBoxComponent } from './components/confirm-row-dialog-box/confirm-row-dialog-box.component';
@@ -22,7 +22,7 @@ import { TaskExecutorTableComponent } from './pages/task-executor-table/task-exe
 @NgModule({
   declarations: [
     AppComponent,
-    TaskConfigTableComponent,
+    TaskTableComponent,
     ConfirmRowDialogBoxComponent,
     TaskExecutorTableComponent
   ],

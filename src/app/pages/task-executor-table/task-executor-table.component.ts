@@ -21,26 +21,26 @@ export class TaskExecutorTableComponent implements OnInit {
   }
 
   private fetchExecutors() {
-    this.api.getTaskExecutors().subscribe((res: TaskExecutor[]) => {
-      this.dataSource = new MatTableDataSource<TaskExecutor>(res)
+    this.api.getTaskExecutors().subscribe((res) => {
+      this.dataSource = new MatTableDataSource<TaskExecutor>(res.task_executors)
     })
   }
 
   runExecutor(row: TaskExecutor) {
-    this.api.runExecutor(row.task_config.task_config_id).subscribe(() => {})
+    this.api.runExecutor(row.task.task_id).subscribe(() => {})
     this.fetchExecutors()
   }
 
   openStopDialog(row: TaskExecutor) {
-    const title = "Stop executing task with ID " + row.task_config.task_config_id + "?"
+    const title = "Stop executing task with ID " + row.task.task_id + "?"
     const descr = ""
 
     const dialog = this.dialog.open(ConfirmRowDialogBoxComponent,
-      { data: { title: title, descr: descr, taskConfigID: row.task_config.task_config_id } })
+      { data: { title: title, descr: descr, taskID: row.task.task_id } })
 
     dialog.afterClosed().subscribe(result => {
-      if (result && result.event == 'Delete') {
-        this.stopExecutor(result.taskConfigID)
+      if (result && result.event == 'Confirm') {
+        this.stopExecutor(result.taskID)
       }
     })
   }

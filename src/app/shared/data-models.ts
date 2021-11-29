@@ -1,6 +1,6 @@
 export interface Task {
   task_id: number;
-  command_args: string;
+  command: string;
   trigger_type: string;
   trigger_args: string;
 }

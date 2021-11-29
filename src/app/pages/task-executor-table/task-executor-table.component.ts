@@ -12,7 +12,7 @@ import {ConfirmRowDialogBoxComponent} from "../../components/confirm-row-dialog-
 })
 export class TaskExecutorTableComponent implements OnInit {
   dataSource: any
-  columnDefs: any[string] = ['id', 'command-args', 'is-running', 'actions']
+  columnDefs: any[string] = ['id', 'command', 'is-running', 'actions']
 
   constructor(public api: ApiService, public dialog: MatDialog) { }
 

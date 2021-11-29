@@ -9,10 +9,10 @@
           <td mat-cell *matCellDef="let row">{{ row.task.task_id }}</td>
         </ng-container>
 
-        <!-- Command args -->
-        <ng-container matColumnDef="command-args">
-          <th mat-header-cell *matHeaderCellDef>Command args</th>
-          <td mat-cell *matCellDef="let row">{{ row.task.command_args }}</td>
+        <!-- Command -->
+        <ng-container matColumnDef="command">
+          <th mat-header-cell *matHeaderCellDef>Command</th>
+          <td mat-cell *matCellDef="let row">{{ row.task.command }}</td>
         </ng-container>
 
         <!-- Running -->

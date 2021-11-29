@@ -3,7 +3,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { TaskConfig } from "../../shared/data-models";
 import { ApiService } from "../../shared/api.service";
 import { MatDialog } from "@angular/material/dialog";
-import { DeleteRowDialogBoxComponent } from "../../components/delete-row-dialog-box/delete-row-dialog-box.component";
+import { ConfirmRowDialogBoxComponent } from "../../components/confirm-row-dialog-box/confirm-row-dialog-box.component";
 
 @Component({
   selector: 'app-task-config-table',
@@ -30,7 +30,7 @@ export class TaskConfigTableComponent implements OnInit {
     const title = "Delete task config with ID " + row.task_config_id + "?"
     const descr = "This will delete the executor too"
 
-    const dialog = this.dialog.open(DeleteRowDialogBoxComponent,
+    const dialog = this.dialog.open(ConfirmRowDialogBoxComponent,
       { data: { title: title, descr: descr, taskConfigID: row.task_config_id } })
 
     dialog.afterClosed().subscribe(result => {

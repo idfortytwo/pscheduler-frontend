@@ -12,7 +12,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { TaskConfigTableComponent } from './pages/task-config-table/task-config-table.component';
 import { HttpClientModule } from "@angular/common/http";
 import { MatTableModule } from "@angular/material/table";
-import { DeleteRowDialogBoxComponent } from './components/delete-row-dialog-box/delete-row-dialog-box.component';
+import { ConfirmRowDialogBoxComponent } from './components/confirm-row-dialog-box/confirm-row-dialog-box.component';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatInputModule } from "@angular/material/input";
@@ -23,7 +23,7 @@ import { TaskExecutorTableComponent } from './pages/task-executor-table/task-exe
   declarations: [
     AppComponent,
     TaskConfigTableComponent,
-    DeleteRowDialogBoxComponent,
+    ConfirmRowDialogBoxComponent,
     TaskExecutorTableComponent
   ],
   imports: [

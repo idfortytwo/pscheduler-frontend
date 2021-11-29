@@ -3,7 +3,7 @@ import { ApiService } from "../../shared/api.service";
 import { MatDialog } from "@angular/material/dialog";
 import { TaskExecutor} from "../../shared/data-models";
 import { MatTableDataSource } from "@angular/material/table";
-import {DeleteRowDialogBoxComponent} from "../../components/delete-row-dialog-box/delete-row-dialog-box.component";
+import {ConfirmRowDialogBoxComponent} from "../../components/confirm-row-dialog-box/confirm-row-dialog-box.component";
 
 @Component({
   selector: 'app-task-executor-table',
@@ -35,7 +35,7 @@ export class TaskExecutorTableComponent implements OnInit {
     const title = "Stop executing task with ID " + row.task_config.task_config_id + "?"
     const descr = ""
 
-    const dialog = this.dialog.open(DeleteRowDialogBoxComponent,
+    const dialog = this.dialog.open(ConfirmRowDialogBoxComponent,
       { data: { title: title, descr: descr, taskConfigID: row.task_config.task_config_id } })
 
     dialog.afterClosed().subscribe(result => {

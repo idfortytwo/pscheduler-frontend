@@ -3,15 +3,15 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
 @Component({
   selector: 'app-delete-config-dialog-box',
-  templateUrl: './delete-row-dialog-box.component.html',
-  styleUrls: ['./delete-row-dialog-box.component.css']
+  templateUrl: './confirm-row-dialog-box.component.html',
+  styleUrls: ['./confirm-row-dialog-box.component.css']
 })
-export class DeleteRowDialogBoxComponent {
+export class ConfirmRowDialogBoxComponent {
   title: string
   descr: string
   taskConfigID: number
 
-  constructor(public dialogRef: MatDialogRef<DeleteRowDialogBoxComponent>,
+  constructor(public dialogRef: MatDialogRef<ConfirmRowDialogBoxComponent>,
               @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
       this.title = data.title
       this.descr = data.descr

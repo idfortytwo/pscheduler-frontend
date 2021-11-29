@@ -4,3 +4,8 @@ export interface TaskConfig {
   trigger_type: string;
   trigger_args: string;
 }
+
+export interface TaskExecutor {
+  task_config: TaskConfig,
+  is_running: boolean
+}

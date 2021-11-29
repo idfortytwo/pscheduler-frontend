@@ -1,0 +1,47 @@
+<div class="card mat-elevation-z8">
+  <h3 class="card-header">Task executors</h3>
+  <div class="card-body">
+    <div id="table">
+      <table mat-table [dataSource]="dataSource" class="task-executors-table">
+        <!-- ID -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let row">{{ row.task_config.task_config_id }}</td>
+        </ng-container>
+
+        <!-- Command args -->
+        <ng-container matColumnDef="command-args">
+          <th mat-header-cell *matHeaderCellDef>Command args</th>
+          <td mat-cell *matCellDef="let row">{{ row.task_config.command_args }}</td>
+        </ng-container>
+
+        <!-- Running -->
+        <ng-container matColumnDef="is-running">
+          <th mat-header-cell *matHeaderCellDef>Running</th>
+          <td mat-cell *matCellDef="let row">{{ row.is_running }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let row" class="action-link">
+            <div *ngIf="row.is_running; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+              <button mat-icon-button color="warn" class="action-button" (click)="openStopDialog(row)">
+                <mat-icon>pause</mat-icon>
+              </button>
+            </ng-template>
+            <ng-template #elseBlock>
+              <button mat-icon-button color="primary" class="action-button" (click)="runExecutor(row)">
+                <mat-icon>play_arrow</mat-icon>
+              </button>
+            </ng-template>
+          </td>
+        </ng-container>
+
+        <!-- Header and row-->
+        <tr mat-header-row *matHeaderRowDef="columnDefs"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnDefs;"></tr>
+      </table>
+    </div>
+  </div>
+</div>

@@ -21,6 +21,11 @@ export class ApiService {
        this.baseUrl + '/task/' + taskID)
   }
 
+  addTask(task: Task): Observable<{'task_id': number}> {
+    return this.http.post<{'task_id': number}>(
+      this.baseUrl + '/task/', task)
+  }
+
   deleteTask(taskID: number): Observable<{'task_id': number}> {
     return this.http.delete<{'task_id': number}>(
        this.baseUrl + '/task/' + taskID)

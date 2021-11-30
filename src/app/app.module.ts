@@ -16,15 +16,19 @@ import { ConfirmRowDialogBoxComponent } from './components/confirm-row-dialog-bo
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatInputModule } from "@angular/material/input";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { TaskExecutorTableComponent } from './pages/task-executor-table/task-executor-table.component';
+import { AddTaskComponent } from './pages/add-task/add-task.component';
+import {MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskTableComponent,
     ConfirmRowDialogBoxComponent,
-    TaskExecutorTableComponent
+    TaskExecutorTableComponent,
+    AddTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,10 @@ import { TaskExecutorTableComponent } from './pages/task-executor-table/task-exe
     MatFormFieldModule,
     MatDialogModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -16,12 +16,21 @@
   margin: 16px;
 }
 
+.card-body {
+  padding: 0 25px 25px 25px;
+}
+
 .card-header {
-  padding: 16px;
+  padding: 25px 16px 16px;
+  font-size: 2em;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-bottom: 25px
 }
 
 .task-executors-table {
   width: 100%;
+  border: 1px solid #e6e6e6;
 }
 
 .mat-column-id {

@@ -1,9 +1,20 @@
 .card {
   margin: 16px;
+  padding-top: 5px;
 }
 
 .card-header {
   padding: 16px;
+  font-size: 2em;
+}
+
+.return-icon {
+  transform: scale(1.5);
+  margin-right: 5px;
+}
+
+.return-icon:hover {
+  cursor: pointer;
 }
 
 .card-body {
@@ -22,4 +33,12 @@
 .interval-field {
   padding: 0 5px 10px 25px;
   width: 50vh;
+}
+
+.submit-button {
+  margin: 5px;
+}
+
+.form-controls {
+  margin-left: 5px;
 }

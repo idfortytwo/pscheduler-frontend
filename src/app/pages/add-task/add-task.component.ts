@@ -67,8 +67,12 @@ export class AddTaskComponent implements OnInit {
       }
 
       this.api.addTask(task).subscribe(() => {
-        this.router.navigate(['tasks']).then()
+        this.returnToTasks()
       })
     }
+  }
+
+  returnToTasks() {
+    this.router.navigate(['tasks']).then()
   }
 }

@@ -4,6 +4,7 @@ import { Task } from "../../shared/data-models";
 import { ApiService } from "../../shared/api.service";
 import { MatDialog } from "@angular/material/dialog";
 import { ConfirmRowDialogBoxComponent } from "../../components/confirm-row-dialog-box/confirm-row-dialog-box.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-task-config-table',
@@ -14,7 +15,7 @@ export class TaskTableComponent implements OnInit {
   dataSource: any;
   columnDefs: any[string] = ['id', 'command', 'trigger-type', 'trigger-args', 'actions'];
 
-  constructor(public api: ApiService, public dialog: MatDialog) { }
+  constructor(public api: ApiService, public dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.fetchTasks()
@@ -47,5 +48,9 @@ export class TaskTableComponent implements OnInit {
       return value.task_id != taskID;
     })
     this.dataSource._updateChangeSubscription()
+  }
+
+  addTask() {
+    this.router.navigate(['tasks', 'add']).then()
   }
 }

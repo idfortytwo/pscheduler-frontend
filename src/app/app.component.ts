@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -10,9 +11,11 @@ export class AppComponent {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
-  ngAfterViewInit() {
-    // this.sidenav.open();
+  ngAfterViewInit() {}
+
+  navigateTo(path: string) {
+    this.router.navigate([path]).then()
   }
 }

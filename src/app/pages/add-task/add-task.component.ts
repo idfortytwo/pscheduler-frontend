@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Task } from "../../shared/data-models"
 import {ApiService} from "../../shared/api.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-task',
@@ -21,7 +22,7 @@ export class AddTaskComponent implements OnInit {
   intervalDaysControl = new FormControl(0)
   intervalWeeksControl = new FormControl(0)
 
-  constructor(private fb: FormBuilder, private api: ApiService) {
+  constructor(private fb: FormBuilder, private api: ApiService, private router: Router) {
     this.options = fb.group({
       command: this.commandControl,
       trigger_type: this.triggerTypeControl,
@@ -65,8 +66,8 @@ export class AddTaskComponent implements OnInit {
 
       }
 
-      this.api.addTask(task).subscribe(taskID => {
-        console.log(taskID)
+      this.api.addTask(task).subscribe(() => {
+        this.router.navigate(['tasks']).then()
       })
     }
   }

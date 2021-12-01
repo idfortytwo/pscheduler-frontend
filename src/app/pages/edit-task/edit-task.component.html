@@ -1,0 +1,82 @@
+<div class="card mat-elevation-z8">
+  <div class="card-header">
+    <mat-icon class="return-icon" (click)="returnToTasks()">keyboard_arrow_left</mat-icon>
+    <span class="aligned-with-icon">Edit task</span>
+  </div>
+
+  <div class="card-body">
+    <form [formGroup]="options">
+      <div class="form-controls">
+
+        <mat-form-field>
+          <mat-label>Command</mat-label>
+          <textarea matInput [formControl]="commandControl"></textarea>
+          <mat-error *ngIf="commandControl.invalid">{{ getCommandErrorMessage() }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Trigger type</mat-label>
+          <mat-select [formControl]="triggerTypeControl">
+            <mat-option value="interval">Interval</mat-option>
+            <mat-option value="cron">Cron</mat-option>
+            <mat-option value="date">Date</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <div [ngSwitch]="this.triggerTypeControl.value">
+          <div *ngSwitchCase="'interval'">
+            <form [formGroup]="intervalOptions">
+              <mat-form-field class="interval-field">
+                <mat-label>Seconds</mat-label>
+                <input matInput type="number" min="0"
+                       [formControl]="intervalSecondsControl">
+              </mat-form-field>
+
+              <mat-form-field class="interval-field">
+                <mat-label>Minutes</mat-label>
+                <input matInput type="number" min="0"
+                       [formControl]="intervalMinutesControl">
+              </mat-form-field>
+
+              <mat-form-field class="interval-field">
+                <mat-label>Hours</mat-label>
+                <input matInput type="number" min="0"
+                       [formControl]="intervalHoursControl">
+              </mat-form-field>
+
+              <mat-form-field class="interval-field">
+                <mat-label>Days</mat-label>
+                <input matInput type="number" min="0"
+                       [formControl]="intervalDaysControl">
+              </mat-form-field>
+
+              <mat-form-field class="interval-field">
+                <mat-label>Weeks</mat-label>
+                <input matInput type="number" min="0"
+                       [formControl]="intervalWeeksControl">
+              </mat-form-field>
+            </form>
+          </div>
+
+          <div *ngSwitchCase="'cron'">
+            <mat-form-field>
+              <mat-label>Trigger arguments</mat-label>
+              <input matInput [formControl]="triggerArgsControl">
+            </mat-form-field>
+          </div>
+
+          <div *ngSwitchCase="'date'">
+            <mat-form-field>
+              <mat-label>Trigger arguments</mat-label>
+              <input matInput type="datetime-local" [formControl]="triggerArgsControl">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <button mat-raised-button class="submit-button" color="accent" (click)="onSubmit()">Submit</button>
+
+    </form>
+  </div>
+</div>

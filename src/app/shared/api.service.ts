@@ -31,6 +31,12 @@ export class ApiService {
        this.baseUrl + '/task/' + taskID)
   }
 
+  editTask(taskID: number, task: Task): Observable<{'task_id': number}> {
+    console.log(task)
+    return this.http.post<{'task_id': number}>(
+      this.baseUrl + '/task/' + taskID, task)
+  }
+
   getTaskExecutors(): Observable<{'task_executors': TaskExecutor[]}> {
     return this.http.get<{'task_executors': TaskExecutor[]}>(
        this.baseUrl + '/executor/')

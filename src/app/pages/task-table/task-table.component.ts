@@ -4,7 +4,7 @@ import { Task } from "../../shared/data-models";
 import { ApiService } from "../../shared/api.service";
 import { MatDialog } from "@angular/material/dialog";
 import { ConfirmRowDialogBoxComponent } from "../../components/confirm-row-dialog-box/confirm-row-dialog-box.component";
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-task-config-table',
@@ -52,5 +52,13 @@ export class TaskTableComponent implements OnInit {
 
   addTask() {
     this.router.navigate(['tasks', 'add']).then()
+  }
+
+  editTask(task_id: number) {
+    this.router.navigate(['tasks', 'edit', task_id]).then()
+  }
+
+  stringify(trigger_args: any) {
+    return JSON.stringify(trigger_args)
   }
 }

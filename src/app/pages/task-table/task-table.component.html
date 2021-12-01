@@ -26,14 +26,14 @@
       <!-- Trigger args -->
       <ng-container matColumnDef="trigger-args">
         <th mat-header-cell *matHeaderCellDef>Trigger args</th>
-        <td mat-cell *matCellDef="let row">{{ row.trigger_args }}</td>
+        <td mat-cell *matCellDef="let row">{{ stringify(row.trigger_args) }}</td>
       </ng-container>
 
       <!-- Delete and edit buttons -->
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell *matCellDef="let row" class="action-link">
-          <button mat-icon-button class="action-button">
+          <button mat-icon-button class="action-button" (click)="editTask(row.task_id)">
             <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button color="warn" class="action-button" (click)="openDeleteDialog(row)">

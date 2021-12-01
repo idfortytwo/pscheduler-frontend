@@ -19,8 +19,9 @@ import { MatInputModule } from "@angular/material/input";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { TaskExecutorTableComponent } from './pages/task-executor-table/task-executor-table.component';
 import { AddTaskComponent } from './pages/add-task/add-task.component';
-import {MatOptionModule} from "@angular/material/core";
-import {MatSelectModule} from "@angular/material/select";
+import { MatOptionModule } from "@angular/material/core";
+import { MatSelectModule } from "@angular/material/select";
+import { EditTaskComponent } from './pages/edit-task/edit-task.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MatSelectModule} from "@angular/material/select";
     TaskTableComponent,
     ConfirmRowDialogBoxComponent,
     TaskExecutorTableComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,

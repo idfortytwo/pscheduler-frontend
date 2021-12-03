@@ -1,23 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiService } from "../../shared/api.service";
 import { MatDialog } from "@angular/material/dialog";
 import { TaskExecutor} from "../../shared/data-models";
 import { MatTableDataSource } from "@angular/material/table";
-import {ConfirmRowDialogBoxComponent} from "../../components/confirm-row-dialog-box/confirm-row-dialog-box.component";
+import { ConfirmRowDialogBoxComponent } from "../../components/confirm-row-dialog-box/confirm-row-dialog-box.component";
+import {interval, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-task-executor-table',
   templateUrl: './task-executor-table.component.html',
   styleUrls: ['./task-executor-table.component.css']
 })
-export class TaskExecutorTableComponent implements OnInit {
+export class TaskExecutorTableComponent implements OnInit, OnDestroy {
   dataSource: any
-  columnDefs: any[string] = ['id', 'command', 'active']
+  columnDefs: any[string] = ['id', 'command', 'status', 'active']
+  refreshSub!: Subscription
 
   constructor(public api: ApiService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.fetchExecutors()
+
+    this.refreshSub = interval(1000).subscribe(() => {
+      this.fetchExecutors()
+    })
+  }
+
+  ngOnDestroy() {
+    this.refreshSub.unsubscribe()
   }
 
   private fetchExecutors() {

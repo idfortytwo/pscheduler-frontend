@@ -12,7 +12,7 @@ import {ConfirmRowDialogBoxComponent} from "../../components/confirm-row-dialog-
 })
 export class TaskExecutorTableComponent implements OnInit {
   dataSource: any
-  columnDefs: any[string] = ['id', 'command', 'is-running', 'actions']
+  columnDefs: any[string] = ['id', 'command', 'active']
 
   constructor(public api: ApiService, public dialog: MatDialog) { }
 
@@ -50,5 +50,14 @@ export class TaskExecutorTableComponent implements OnInit {
 
     this.fetchExecutors()
     this.dataSource._updateChangeSubscription()
+  }
+
+  switchActivate(row: TaskExecutor) {
+    if (row.active) {
+      this.stopExecutor(row.task.task_id)
+      console.log('stopping', row)
+    } else {
+      this.runExecutor(row)
+    }
   }
 }

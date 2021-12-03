@@ -22,6 +22,7 @@ import { AddTaskComponent } from './pages/add-task/add-task.component';
 import { MatOptionModule } from "@angular/material/core";
 import { MatSelectModule } from "@angular/material/select";
 import { EditTaskComponent } from './pages/edit-task/edit-task.component';
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { EditTaskComponent } from './pages/edit-task/edit-task.component';
     FormsModule,
     ReactiveFormsModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,7 +7,7 @@ export interface Task {
 
 export interface TaskExecutor {
   task: Task,
-  is_running: boolean
+  active: boolean
 }
 
 export interface IntervalArgs {

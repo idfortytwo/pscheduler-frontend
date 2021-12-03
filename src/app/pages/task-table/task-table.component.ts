@@ -1,24 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from "@angular/material/table";
 import { Task } from "../../shared/data-models";
 import { ApiService } from "../../shared/api.service";
 import { MatDialog } from "@angular/material/dialog";
 import { ConfirmRowDialogBoxComponent } from "../../components/confirm-row-dialog-box/confirm-row-dialog-box.component";
 import { Router } from "@angular/router";
+import { interval, Subscription } from "rxjs";
 
 @Component({
   selector: 'app-task-config-table',
   templateUrl: './task-table.component.html',
   styleUrls: ['./task-table.component.css']
 })
-export class TaskTableComponent implements OnInit {
+export class TaskTableComponent implements OnInit, OnDestroy {
   dataSource: any;
   columnDefs: any[string] = ['id', 'command', 'trigger-type', 'trigger-args', 'actions'];
+  refreshSub!: Subscription
 
   constructor(public api: ApiService, public dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.fetchTasks()
+
+    this.refreshSub = interval(10000).subscribe(() => {
+      this.fetchTasks()
+    })
+  }
+
+  ngOnDestroy() {
+    this.refreshSub.unsubscribe()
   }
 
   private fetchTasks() {

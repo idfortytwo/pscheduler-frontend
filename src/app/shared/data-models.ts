@@ -17,3 +17,12 @@ export interface IntervalArgs {
   days: number,
   weeks: number
 }
+
+export interface ExecutionLog {
+  execution_log_id: number,
+  task_id: number,
+  status: string
+  start_date: Date,
+  finish_date: Date,
+  return_code: number
+}

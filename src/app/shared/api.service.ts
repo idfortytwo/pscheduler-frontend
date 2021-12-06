@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
-import { Task, TaskExecutor } from "./data-models";
+import {ExecutionLog, Task, TaskExecutor} from "./data-models";
 import { HttpClient } from "@angular/common/http";
 
 @Injectable({
@@ -50,5 +50,11 @@ export class ApiService {
   stopExecutor(taskID: number): Observable<{'task_id': number}> {
     return this.http.post<{'task_id': number}>(
        this.baseUrl + '/stop_executor/' + taskID, {})
+  }
+
+  getExecutionLogs(): Observable<{'execution_logs': ExecutionLog[]}> {
+    return this.http.get<{'execution_logs': ExecutionLog[]}>(
+      this.baseUrl + '/execution_log/'
+    )
   }
 }

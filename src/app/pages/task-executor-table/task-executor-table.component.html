@@ -31,26 +31,6 @@
           </td>
         </ng-container>
 
-<!--        <ng-container matColumnDef="actions">-->
-<!--          <th mat-header-cell *matHeaderCellDef>Actions</th>-->
-<!--&lt;!&ndash;          <td mat-cell *matCellDef="let row" class="action-link">&ndash;&gt;-->
-<!--&lt;!&ndash;            <div *ngIf="row.is_running; then thenBlock else elseBlock"></div>&ndash;&gt;-->
-<!--&lt;!&ndash;            <ng-template #thenBlock>&ndash;&gt;-->
-<!--&lt;!&ndash;              <button mat-icon-button color="warn" class="action-button" (click)="openStopDialog(row)">&ndash;&gt;-->
-<!--&lt;!&ndash;                <mat-icon>pause</mat-icon>&ndash;&gt;-->
-<!--&lt;!&ndash;              </button>&ndash;&gt;-->
-<!--&lt;!&ndash;            </ng-template>&ndash;&gt;-->
-<!--&lt;!&ndash;            <ng-template #elseBlock>&ndash;&gt;-->
-<!--&lt;!&ndash;              <button mat-icon-button color="primary" class="action-button" (click)="runExecutor(row)">&ndash;&gt;-->
-<!--&lt;!&ndash;                <mat-icon>play_arrow</mat-icon>&ndash;&gt;-->
-<!--&lt;!&ndash;              </button>&ndash;&gt;-->
-<!--&lt;!&ndash;            </ng-template>&ndash;&gt;-->
-<!--&lt;!&ndash;          </td>&ndash;&gt;-->
-<!--          <td mat-cell *matCellDef="let row" >-->
-<!--            <mat-slide-toggle [checked]="row.is_running" (change)="switchActivate(row)"></mat-slide-toggle>-->
-<!--          </td>-->
-<!--        </ng-container>-->
-
         <!-- Header and row-->
         <tr mat-header-row *matHeaderRowDef="columnDefs"></tr>
         <tr mat-row *matRowDef="let row; columns: columnDefs;"></tr>

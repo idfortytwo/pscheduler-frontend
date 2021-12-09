@@ -19,6 +19,17 @@ td {
   border-bottom: 1px transparent;
 }
 
+td.mat-cell:first-child {
+  padding-left: 20px;
+}
+
+.mat-footer-row {
+  background: transparent !important;
+  outline: 1px solid #e0e0e0;
+  height: 30px;
+  text-align: center;
+}
+
 tr.mat-row {
   height: 30px !important;
 }
@@ -27,17 +38,15 @@ pre {
   display: inline;
 }
 
-.mat-cell {
-  height: auto;
-}
-
-.mat-row {
-  padding: 20px
-}
-
 .logs-table {
   position: relative;
   max-height: 700px;
   overflow: auto;
   border: 1px solid #e0e0e0;
+}
+
+.finish-message {
+  font-size: 1.5em;
+  margin-top: 25px;
+  margin-bottom: 0;
 }

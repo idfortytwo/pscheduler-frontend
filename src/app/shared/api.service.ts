@@ -61,7 +61,8 @@ export class ApiService {
       Observable<{
         'execution_output_logs': ExecutionOutputLog[],
         'last_execution_output_log_id': number,
-        'status': string
+        'status': string,
+        'return_code': number
       }> {
     let params = new HttpParams().set('last_execution_output_log_id', lastExecutionOutputLogID)
 

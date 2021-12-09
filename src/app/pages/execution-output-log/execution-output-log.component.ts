@@ -11,12 +11,15 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ['./execution-output-log.component.css']
 })
 export class ExecutionOutputLogComponent implements OnInit, OnDestroy {
-  dataSource = new MatTableDataSource<ExecutionOutputLog>();
-  columnDefs: any[string] = ['time', 'message'];
-  refreshSub!: Subscription
-  lastExecutionOutputLogID: number = 0;
+  dataSource = new MatTableDataSource<ExecutionOutputLog>()
+  columnDefs: any[string] = ['time', 'message']
+  lastExecutionOutputLogID: number = 0
+  execution_log_id!: number
 
-  execution_log_id!: number;
+  executionFinished: boolean = false
+  refreshSub!: Subscription
+  status!: string
+  returnCode!: number
 
   constructor(public api: ApiService, private route: ActivatedRoute) { }
 
@@ -44,9 +47,29 @@ export class ExecutionOutputLogComponent implements OnInit, OnDestroy {
       this.dataSource.data = [...this.dataSource.data]
 
       this.lastExecutionOutputLogID = res.last_execution_output_log_id
-      if (res.status == 'finished' || res.status != null) {
+      if (res.status != 'started' && res.status != null) {
         this.refreshSub.unsubscribe()
+        this.executionFinished = true
+
+        this.status = res.status
+        this.returnCode = res.return_code
       }
     })
+  }
+
+  getFinishMessage() {
+    if (this.status == 'finished') {
+      if (this.returnCode) {
+        return 'Successfully finished with code ' + this.returnCode
+      } else {
+        return 'Successfully finished'
+      }
+    } else {
+      if (this.returnCode) {
+        return 'Failed with code ' + this.returnCode
+      } else {
+        return 'Failed'
+      }
+    }
   }
 }

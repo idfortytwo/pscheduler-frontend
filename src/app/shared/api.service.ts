@@ -13,7 +13,7 @@ export class ApiService {
 
   getTasks(): Observable<{'tasks': Task[]}> {
     return this.http.get<{'tasks': Task[]}>(
-       this.baseUrl + '/task/')
+       this.baseUrl + '/task')
   }
 
   getTask(taskID: number): Observable<{'task': Task}> {
@@ -32,14 +32,13 @@ export class ApiService {
   }
 
   editTask(taskID: number, task: Task): Observable<{'task_id': number}> {
-    console.log(task)
     return this.http.post<{'task_id': number}>(
       this.baseUrl + '/task/' + taskID, task)
   }
 
   getTaskExecutors(): Observable<{'task_executors': TaskExecutor[]}> {
     return this.http.get<{'task_executors': TaskExecutor[]}>(
-       this.baseUrl + '/executor/')
+       this.baseUrl + '/executor')
   }
 
   runExecutor(taskID: number): Observable<{'task_id': number}> {
@@ -54,7 +53,7 @@ export class ApiService {
 
   getExecutionLogs(): Observable<{ 'execution_logs': ExecutionLog[], 'last_execution_log_id': number }> {
     return this.http.get<{ 'execution_logs': ExecutionLog[], 'last_execution_log_id': number }>(
-      this.baseUrl + '/execution_log/'
+      this.baseUrl + '/execution_log'
     )
   }
 

@@ -26,3 +26,10 @@ export interface ExecutionLog {
   finish_date: Date,
   return_code: number
 }
+
+export interface ExecutionOutputLog {
+  execution_output_log_id: number,
+  execution_log_id: number,
+  message: string,
+  time: Date
+}

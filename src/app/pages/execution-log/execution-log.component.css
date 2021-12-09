@@ -2,3 +2,16 @@
   width: 100%;
   border: 1px solid #e6e6e6;
 }
+
+.mat-column-more-info {
+  text-align: center;
+  width: 90px;
+}
+
+.action-button {
+  margin: 2px;
+}
+
+.add-task-button {
+  margin-top: 25px;
+}

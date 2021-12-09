@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Observable } from "rxjs";
-import {ExecutionLog, Task, TaskExecutor} from "./data-models";
-import { HttpClient } from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {Observable} from "rxjs";
+import {ExecutionLog, ExecutionOutputLog, Task, TaskExecutor} from "./data-models";
+import {HttpClient, HttpParams} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -52,9 +52,19 @@ export class ApiService {
        this.baseUrl + '/stop_executor/' + taskID, {})
   }
 
-  getExecutionLogs(): Observable<{'execution_logs': ExecutionLog[]}> {
-    return this.http.get<{'execution_logs': ExecutionLog[]}>(
+  getExecutionLogs(): Observable<{ 'execution_logs': ExecutionLog[], 'last_execution_log_id': number }> {
+    return this.http.get<{ 'execution_logs': ExecutionLog[], 'last_execution_log_id': number }>(
       this.baseUrl + '/execution_log/'
+    )
+  }
+
+  getExecutionOutputLogs(executionLogID: number, lastExecutionOutputLogID: number): Observable<{
+    'execution_output_logs': ExecutionOutputLog[], 'last_execution_output_log_id': number }> {
+    let params = new HttpParams().set('last_execution_output_log_id', lastExecutionOutputLogID)
+
+    return this.http.get<{ 'execution_output_logs': ExecutionOutputLog[], 'last_execution_output_log_id': number }>(
+      this.baseUrl + '/execution/output/' + executionLogID,
+      { params: params }
     )
   }
 }

@@ -5,6 +5,7 @@ import { TaskExecutorTableComponent } from "./pages/task-executor-table/task-exe
 import { AddTaskComponent } from "./pages/add-task/add-task.component";
 import { EditTaskComponent } from "./pages/edit-task/edit-task.component";
 import { ExecutionLogComponent } from "./pages/execution-log/execution-log.component";
+import { ExecutionOutputLogComponent } from "./pages/execution-output-log/execution-output-log.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'tasks', pathMatch: 'full', },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'tasks/edit/:task_id', component: EditTaskComponent },
   { path: 'executors', component: TaskExecutorTableComponent },
   { path: 'execution', component: ExecutionLogComponent },
+  { path: 'execution/output/:execution_log_id', component: ExecutionOutputLogComponent },
   { path: '**', redirectTo: 'tasks' }
 ];
 

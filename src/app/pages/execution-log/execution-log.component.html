@@ -2,9 +2,10 @@
   <div class="card-header">
     <span>Execution log</span>
   </div>
+
   <div class="card-body">
-    <div id="table">
-      <table mat-table [dataSource]="dataSource" class="execution-log-table">
+    <div class="logs-table">
+      <table mat-table [dataSource]="dataSource">
         <!-- Execution log ID -->
         <ng-container matColumnDef="execution_log_id">
           <th mat-header-cell *matHeaderCellDef>Log ID</th>
@@ -52,7 +53,7 @@
         </ng-container>
 
         <!-- Header and row-->
-        <tr mat-header-row *matHeaderRowDef="columnDefs"></tr>
+        <tr mat-header-row *matHeaderRowDef="columnDefs; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: columnDefs;"></tr>
       </table>
     </div>

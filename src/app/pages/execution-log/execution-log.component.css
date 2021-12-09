@@ -1,6 +1,5 @@
-.execution-log-table {
+.mat-table {
   width: 100%;
-  border: 1px solid #e6e6e6;
 }
 
 .mat-column-more-info {
@@ -14,4 +13,12 @@
 
 .add-task-button {
   margin-top: 25px;
+}
+
+.logs-table {
+  position: relative;
+  max-height: 700px;
+  overflow: auto;
+  border: 1px solid #e0e0e0;
+  background: white;
 }

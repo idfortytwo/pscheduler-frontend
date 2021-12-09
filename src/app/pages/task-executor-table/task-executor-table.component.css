@@ -12,9 +12,8 @@
   font-weight: bold;
 }
 
-.task-executors-table {
+.mat-table {
   width: 100%;
-  border: 1px solid #e6e6e6;
 }
 
 .mat-column-id {
@@ -30,4 +29,11 @@
 
 .action-button {
   margin: 2px;
+}
+
+.executors-table {
+  position: relative;
+  max-height: 700px;
+  overflow: auto;
+  border: 1px solid #e0e0e0;
 }

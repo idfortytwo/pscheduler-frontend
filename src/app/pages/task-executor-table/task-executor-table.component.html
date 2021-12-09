@@ -2,9 +2,10 @@
   <div class="card-header">
     <span>Task executors</span>
   </div>
+
   <div class="card-body">
-    <div id="table">
-      <table mat-table [dataSource]="dataSource" class="task-executors-table">
+    <div class="executors-table">
+      <table mat-table [dataSource]="dataSource">
         <!-- ID -->
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef>ID</th>
@@ -32,7 +33,7 @@
         </ng-container>
 
         <!-- Header and row-->
-        <tr mat-header-row *matHeaderRowDef="columnDefs"></tr>
+        <tr mat-header-row *matHeaderRowDef="columnDefs; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: columnDefs;"></tr>
       </table>
     </div>

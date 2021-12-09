@@ -17,9 +17,8 @@
   margin-right: 5px;
 }
 
-.tasks-table {
+.mat-table {
   width: 100%;
-  border: 1px solid #e6e6e6;
 }
 
 .mat-column-id {
@@ -39,4 +38,11 @@
 
 .add-task-button {
   margin-top: 25px;
+}
+
+.tasks-table {
+  position: relative;
+  max-height: 700px;
+  overflow: auto;
+  border: 1px solid #e0e0e0;
 }

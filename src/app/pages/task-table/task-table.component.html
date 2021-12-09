@@ -4,50 +4,51 @@
   </div>
 
   <div class="card-body">
-    <table mat-table [dataSource]="dataSource" class="tasks-table">
-      <!-- ID -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let row">{{ row.task_id }}</td>
-      </ng-container>
+    <div class="tasks-table">
+      <table mat-table [dataSource]="dataSource">
+        <!-- ID -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let row">{{ row.task_id }}</td>
+        </ng-container>
 
-      <!-- Command -->
-      <ng-container matColumnDef="command">
-        <th mat-header-cell *matHeaderCellDef>Command</th>
-        <td mat-cell *matCellDef="let row">{{ row.command }}</td>
-      </ng-container>
+        <!-- Command -->
+        <ng-container matColumnDef="command">
+          <th mat-header-cell *matHeaderCellDef>Command</th>
+          <td mat-cell *matCellDef="let row">{{ row.command }}</td>
+        </ng-container>
 
-      <!-- Trigger type -->
-      <ng-container matColumnDef="trigger-type">
-        <th mat-header-cell *matHeaderCellDef>Trigger type</th>
-        <td mat-cell *matCellDef="let row">{{ row.trigger_type }}</td>
-      </ng-container>
+        <!-- Trigger type -->
+        <ng-container matColumnDef="trigger-type">
+          <th mat-header-cell *matHeaderCellDef>Trigger type</th>
+          <td mat-cell *matCellDef="let row">{{ row.trigger_type }}</td>
+        </ng-container>
 
-      <!-- Trigger args -->
-      <ng-container matColumnDef="trigger-args">
-        <th mat-header-cell *matHeaderCellDef>Trigger args</th>
-        <td mat-cell *matCellDef="let row">{{ stringify(row.trigger_args) }}</td>
-      </ng-container>
+        <!-- Trigger args -->
+        <ng-container matColumnDef="trigger-args">
+          <th mat-header-cell *matHeaderCellDef>Trigger args</th>
+          <td mat-cell *matCellDef="let row">{{ stringify(row.trigger_args) }}</td>
+        </ng-container>
 
-      <!-- Delete and edit buttons -->
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>Actions</th>
-        <td mat-cell *matCellDef="let row" class="action-link">
-          <button mat-icon-button class="action-button" (click)="editTask(row.task_id)">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button color="warn" class="action-button" (click)="openDeleteDialog(row)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
+        <!-- Delete and edit buttons -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let row" class="action-link">
+            <button mat-icon-button class="action-button" (click)="editTask(row.task_id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" class="action-button" (click)="openDeleteDialog(row)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
 
-      <!-- Header and row-->
-      <tr mat-header-row *matHeaderRowDef="columnDefs"></tr>
-      <tr mat-row *matRowDef="let row; columns: columnDefs;"></tr>
-    </table>
+        <!-- Header and row-->
+        <tr mat-header-row *matHeaderRowDef="columnDefs; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnDefs;"></tr>
+      </table>
+    </div>
 
     <button class="add-task-button" mat-raised-button color="accent" (click)="addTask()">Add task</button>
-
   </div>
 </div>

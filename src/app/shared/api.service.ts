@@ -58,7 +58,11 @@ export class ApiService {
   }
 
   getExecutionOutputLogs(executionLogID: number, lastExecutionOutputLogID: number):
-        Observable<{'execution_output_logs': ExecutionOutputLog[], 'last_execution_output_log_id': number}> {
+      Observable<{
+        'execution_output_logs': ExecutionOutputLog[],
+        'last_execution_output_log_id': number,
+        'status': string
+      }> {
     let params = new HttpParams().set('last_execution_output_log_id', lastExecutionOutputLogID)
 
     return this.http.get<any>(

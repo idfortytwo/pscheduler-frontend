@@ -38,13 +38,15 @@ export class ExecutionOutputLogComponent implements OnInit, OnDestroy {
 
   fetchExecutionOutputLogs() {
     this.api.getExecutionOutputLogs(this.execution_log_id, this.lastExecutionOutputLogID).subscribe((res) => {
-      console.log(res)
       for (let execution_output_log of res.execution_output_logs) {
         this.dataSource.data.push(execution_output_log)
       }
       this.dataSource.data = [...this.dataSource.data]
 
       this.lastExecutionOutputLogID = res.last_execution_output_log_id
+      if (res.status == 'finished' || res.status != null) {
+        this.refreshSub.unsubscribe()
+      }
     })
   }
 }

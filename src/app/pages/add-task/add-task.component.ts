@@ -22,7 +22,9 @@ export class AddTaskComponent implements OnInit {
   intervalDaysControl = new FormControl(0)
   intervalWeeksControl = new FormControl(0)
 
-  constructor(private fb: FormBuilder, private api: ApiService, private router: Router) {
+  constructor(public fb: FormBuilder,
+              public api: ApiService,
+              public router: Router) {
     this.options = fb.group({
       command: this.commandControl,
       trigger_type: this.triggerTypeControl,
@@ -39,19 +41,23 @@ export class AddTaskComponent implements OnInit {
 
   ngOnInit(): void {
     this.triggerTypeControl.valueChanges
-      .subscribe(value => {
-        this.triggerArgsControl.setValue('')
-        for (let controlName in this.intervalOptions.controls) {
-          this.intervalOptions.controls[controlName].setValue('')
-        }
-
-        if (value == 'interval') {
-          this.triggerArgsControl.clearValidators()
-        } else {
-          this.triggerArgsControl.setValidators(Validators.required)
-        }
+      .subscribe((triggerType: string) => {
+        this.clearForm(triggerType)
       }
     )
+  }
+
+  clearForm(triggerType: string) {
+    this.triggerArgsControl.setValue('')
+
+    if (triggerType == 'interval') {
+      for (let controlName in this.intervalOptions.controls) {
+        this.intervalOptions.controls[controlName].setValue('')
+      }
+      this.triggerArgsControl.clearValidators()
+    } else {
+      this.triggerArgsControl.setValidators(Validators.required)
+    }
   }
 
   getCommandErrorMessage() {
@@ -60,16 +66,19 @@ export class AddTaskComponent implements OnInit {
 
   onSubmit() {
     if (!this.commandControl.hasError('required') && !this.triggerArgsControl.hasError('required')) {
-      let task: Task = this.options.value;
+      let task: Task = this.options.value
       if (this.triggerTypeControl.value == 'interval') {
-        task.trigger_args = this.intervalOptions.value;
-
+        task.trigger_args = this.intervalOptions.value
       }
 
-      this.api.addTask(task).subscribe(() => {
-        this.returnToTasks()
-      })
+      this.submitTask(task)
     }
+  }
+
+  submitTask(task: Task) {
+    this.api.addTask(task).subscribe(() => {
+      this.returnToTasks()
+    })
   }
 
   returnToTasks() {

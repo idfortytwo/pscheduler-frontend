@@ -69,18 +69,18 @@ export class EditTaskComponent implements OnInit {
   fillValues() {
     this.triggerTypeControl.valueChanges
       .subscribe(value => {
-          this.triggerArgsControl.setValue('')
-          for (let controlName in this.intervalOptions.controls) {
-            this.intervalOptions.controls[controlName].setValue('')
-          }
-
-          if (value == 'interval') {
-            this.triggerArgsControl.clearValidators()
-          } else {
-            this.triggerArgsControl.setValidators(Validators.required)
-          }
+        this.triggerArgsControl.setValue('')
+        for (let controlName in this.intervalOptions.controls) {
+          this.intervalOptions.controls[controlName].setValue('')
         }
-      )
+
+        if (value == 'interval') {
+          this.triggerArgsControl.clearValidators()
+        } else {
+          this.triggerArgsControl.setValidators(Validators.required)
+        }
+      }
+    )
   }
 
   getCommandErrorMessage() {

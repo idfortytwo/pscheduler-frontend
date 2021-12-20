@@ -65,7 +65,6 @@ export class TaskExecutorTableComponent implements OnInit, OnDestroy {
   switchActivate(row: TaskExecutor) {
     if (row.active) {
       this.stopExecutor(row.task.task_id)
-      console.log('stopping', row)
     } else {
       this.runExecutor(row)
     }

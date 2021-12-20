@@ -41,14 +41,17 @@ export class EditTaskComponent extends AddTaskComponent implements OnInit {
       this.triggerTypeControl.setValue(task.trigger_type)
 
       if (task.trigger_type == 'interval') {
-        this.setupInterval(task)
+        this.fillInterval(task)
       } else {
+        if (task.trigger_type == 'cron') {
+          this.fillCron(task)
+        }
         this.triggerArgsControl.setValidators(Validators.required)
       }
     })
   }
 
-  setupInterval(task: Task) {
+  fillInterval(task: Task) {
     const intervalArgs: IntervalArgs = <IntervalArgs>eval(<string>task.trigger_args)
     this.intervalSecondsControl.setValue(intervalArgs.seconds)
     this.intervalMinutesControl.setValue(intervalArgs.minutes)
@@ -57,6 +60,12 @@ export class EditTaskComponent extends AddTaskComponent implements OnInit {
     this.intervalWeeksControl.setValue(intervalArgs.weeks)
 
     this.triggerArgsControl.clearValidators()
+  }
+
+  fillCron(task: Task) {
+    this.cronControl.setValue(task.trigger_args)
+
+    this.triggerArgsControl.setValidators(Validators.required)
   }
 
   override submitTask(task: Task) {

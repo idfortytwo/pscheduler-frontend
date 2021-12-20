@@ -22,6 +22,9 @@ export class AddTaskComponent implements OnInit {
   intervalDaysControl = new FormControl(0)
   intervalWeeksControl = new FormControl(0)
 
+  cronOptions: FormGroup
+  cronControl = new FormControl('* * * * *')
+
   constructor(public fb: FormBuilder,
               public api: ApiService,
               public router: Router) {
@@ -36,6 +39,9 @@ export class AddTaskComponent implements OnInit {
       hours: this.intervalHoursControl,
       days: this.intervalDaysControl,
       weeks: this.intervalWeeksControl
+    })
+    this.cronOptions = fb.group({
+      cron: this.cronControl
     })
   }
 
@@ -56,6 +62,9 @@ export class AddTaskComponent implements OnInit {
       }
       this.triggerArgsControl.clearValidators()
     } else {
+      if (triggerType == 'cron') {
+        this.cronOptions.controls['cron'].setValue('')
+      }
       this.triggerArgsControl.setValidators(Validators.required)
     }
   }
@@ -67,9 +76,17 @@ export class AddTaskComponent implements OnInit {
   onSubmit() {
     if (!this.commandControl.hasError('required') && !this.triggerArgsControl.hasError('required')) {
       let task: Task = this.options.value
-      if (this.triggerTypeControl.value == 'interval') {
-        task.trigger_args = this.intervalOptions.value
+      switch(this.triggerTypeControl.value) {
+        case 'interval': {
+          task.trigger_args = this.intervalOptions.value
+          break
+        }
+        case 'cron': {
+          task.trigger_args = this.cronControl.value
+          break
+        }
       }
+
 
       this.submitTask(task)
     }

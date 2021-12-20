@@ -2,7 +2,7 @@ export interface Task {
   task_id: number;
   command: string;
   trigger_type: string;
-  trigger_args: string | IntervalArgs;
+  trigger_args: string | IntervalArgs | CronArgs;
 }
 
 export interface TaskExecutor {
@@ -16,6 +16,10 @@ export interface IntervalArgs {
   hours: number,
   days: number,
   weeks: number
+}
+
+export interface CronArgs {
+  cron: string
 }
 
 export interface ExecutionLog {

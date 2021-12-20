@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from "@angular/forms";
+import { FormBuilder } from "@angular/forms";
 import { IntervalArgs, Task } from "../../shared/data-models";
 import { AddTaskComponent } from "../add-task/add-task.component";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -40,15 +40,27 @@ export class EditTaskComponent extends AddTaskComponent implements OnInit {
       this.commandControl.setValue(task.command)
       this.triggerTypeControl.setValue(task.trigger_type)
 
-      if (task.trigger_type == 'interval') {
-        this.fillInterval(task)
-      } else {
-        if (task.trigger_type == 'cron') {
-          this.fillCron(task)
-        }
-        this.triggerArgsControl.setValidators(Validators.required)
-      }
+      this.fillTriggerArgs(task)
     })
+  }
+
+  fillTriggerArgs(task: Task) {
+    switch (task.trigger_type) {
+      case 'interval': {
+        this.fillInterval(task)
+        break
+      }
+
+      case 'cron': {
+        this.fillCron(task)
+        break
+      }
+
+      case 'date': {
+        this.fillDate(task)
+        break
+      }
+    }
   }
 
   fillInterval(task: Task) {
@@ -58,17 +70,18 @@ export class EditTaskComponent extends AddTaskComponent implements OnInit {
     this.intervalHoursControl.setValue(intervalArgs.hours)
     this.intervalDaysControl.setValue(intervalArgs.days)
     this.intervalWeeksControl.setValue(intervalArgs.weeks)
-
-    this.triggerArgsControl.clearValidators()
   }
 
   fillCron(task: Task) {
     this.cronControl.setValue(task.trigger_args)
+  }
 
-    this.triggerArgsControl.setValidators(Validators.required)
+  fillDate(task: Task) {
+    this.dateControl.setValue(task.trigger_args)
   }
 
   override submitTask(task: Task) {
+    console.log('edit', task)
     this.api.editTask(this.taskID, task).subscribe(() => {
       this.returnToTasks()
     })

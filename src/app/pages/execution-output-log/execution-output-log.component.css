@@ -9,6 +9,8 @@ td.time-cell {
 
 .mat-column-time {
   width: 200px;
+  font-family: Consolas, Consolas, sans-serif;
+  user-select: none;
 }
 
 .mat-column-message {
@@ -20,7 +22,7 @@ td {
 }
 
 td.mat-cell:first-child {
-  padding-left: 20px;
+  padding-left: 12px;
 }
 
 .mat-footer-row {
@@ -31,7 +33,7 @@ td.mat-cell:first-child {
 }
 
 tr.mat-row {
-  height: 30px !important;
+  height: 23px !important;
 }
 
 pre {

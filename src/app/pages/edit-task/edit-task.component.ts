@@ -81,7 +81,6 @@ export class EditTaskComponent extends AddTaskComponent implements OnInit {
   }
 
   override submitTask(task: Task) {
-    console.log('edit', task)
     this.api.editTask(this.taskID, task).subscribe(() => {
       this.returnToTasks()
     })

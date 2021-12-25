@@ -32,3 +32,10 @@
   border-top: 1px solid transparent;
   cursor: pointer;
 }
+
+.mat-paginator {
+  border-top: 1px solid #e0e0e0;
+  bottom: 0;
+  position: sticky;
+  z-index: 10;
+}

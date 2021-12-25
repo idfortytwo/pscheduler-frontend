@@ -51,7 +51,7 @@ export class ApiService {
        this.baseUrl + '/stop_executor/' + taskID, {})
   }
 
-  getExecutionLogs(): Observable<{'execution_logs': ExecutionLog[], 'last_execution_log_id': number}> {
+  getExecutionLogs(): Observable<{'execution_logs': ExecutionLog[]}> {
     return this.http.get<any>(
       this.baseUrl + '/execution_log'
     )

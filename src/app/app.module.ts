@@ -25,6 +25,7 @@ import { EditTaskComponent } from './pages/edit-task/edit-task.component';
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { ExecutionLogComponent } from './pages/execution-log/execution-log.component';
 import { ExecutionOutputLogComponent } from './pages/execution-output-log/execution-output-log.component';
+import { MatPaginatorModule } from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ExecutionOutputLogComponent } from './pages/execution-output-log/execut
     ReactiveFormsModule,
     MatOptionModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

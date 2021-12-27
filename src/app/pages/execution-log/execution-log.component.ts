@@ -19,9 +19,9 @@ export class ExecutionLogComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator
   totalRows = 50;
-  pageSize = 5;
+  pageSize = 10;
   currentPage = 0;
-  pageSizeOptions: number[] = [5, 10, 25, 100];
+  pageSizeOptions: number[] = [10, 25, 100];
 
   constructor(private api: ApiService, private router: Router) { }
 

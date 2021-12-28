@@ -13,7 +13,7 @@ import {interval, Subscription} from "rxjs";
 })
 export class TaskExecutorTableComponent implements OnInit, OnDestroy {
   dataSource: any
-  columnDefs: any[string] = ['id', 'command', 'status', 'active']
+  columnDefs: any[string] = ['id', 'title', 'status', 'active']
   refreshSub!: Subscription
 
   constructor(public api: ApiService, public dialog: MatDialog) { }

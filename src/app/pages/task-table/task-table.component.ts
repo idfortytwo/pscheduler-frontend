@@ -14,7 +14,7 @@ import { interval, Subscription } from "rxjs";
 })
 export class TaskTableComponent implements OnInit, OnDestroy {
   dataSource: any;
-  columnDefs: any[string] = ['id', 'command', 'trigger-type', 'trigger-args', 'actions'];
+  columnDefs: any[string] = ['id', 'title', 'command', 'trigger-type', 'trigger-args', 'actions'];
   refreshSub!: Subscription
 
   constructor(public api: ApiService, public dialog: MatDialog, private router: Router) { }

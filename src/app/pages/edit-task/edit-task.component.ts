@@ -37,6 +37,8 @@ export class EditTaskComponent extends AddTaskComponent implements OnInit {
     this.api.getTask(this.taskID).subscribe(res => {
       const task = res.task;
 
+      this.titleControl.setValue(task.title)
+      this.descrControl.setValue(task.descr)
       this.commandControl.setValue(task.command)
       this.triggerTypeControl.setValue(task.trigger_type)
 

@@ -11,6 +11,8 @@ import { Router } from "@angular/router";
 })
 export class AddTaskComponent implements OnInit {
   options: FormGroup;
+  titleControl = new FormControl('', [Validators.required])
+  descrControl = new FormControl('')
   commandControl = new FormControl('', [Validators.required])
   triggerTypeControl = new FormControl('interval');
 
@@ -31,6 +33,8 @@ export class AddTaskComponent implements OnInit {
               public api: ApiService,
               public router: Router) {
     this.options = fb.group({
+      title: this.titleControl,
+      descr: this.descrControl,
       command: this.commandControl,
       trigger_type: this.triggerTypeControl
     });

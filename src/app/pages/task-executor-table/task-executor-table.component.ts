@@ -13,6 +13,7 @@ import {interval, Subscription} from "rxjs";
 })
 export class TaskExecutorTableComponent implements OnInit, OnDestroy {
   dataSource: any
+  activeRows = new Map<number, boolean>()
   columnDefs: any[string] = ['id', 'title', 'status', 'active']
   refreshSub!: Subscription
 
@@ -21,7 +22,7 @@ export class TaskExecutorTableComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.fetchExecutors()
 
-    this.refreshSub = interval(1000).subscribe(() => {
+    this.refreshSub = interval(3000).subscribe(() => {
       this.fetchExecutors()
     })
   }
@@ -32,6 +33,9 @@ export class TaskExecutorTableComponent implements OnInit, OnDestroy {
 
   private fetchExecutors() {
     this.api.getTaskExecutors().subscribe((res) => {
+      for (let executor of res.task_executors) {
+        this.activeRows.set(executor.task.task_id, executor.active)
+      }
       this.dataSource = new MatTableDataSource<TaskExecutor>(res.task_executors)
     })
   }
@@ -62,7 +66,9 @@ export class TaskExecutorTableComponent implements OnInit, OnDestroy {
     this.dataSource._updateChangeSubscription()
   }
 
-  switchActivate(row: TaskExecutor) {
+  async switchActivate(row: TaskExecutor) {
+    this.activeRows.set(row.task.task_id, !this.activeRows.get(row.task.task_id))
+
     if (row.active) {
       this.stopExecutor(row.task.task_id)
     } else {

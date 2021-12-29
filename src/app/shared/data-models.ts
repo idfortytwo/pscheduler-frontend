@@ -38,4 +38,5 @@ export interface ExecutionOutputLog {
   execution_log_id: number
   message: string
   time: Date
+  error: boolean
 }

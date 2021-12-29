@@ -16,7 +16,8 @@
         <ng-container matColumnDef="message" class="log-row message-row">
           <th mat-header-cell *matHeaderCellDef>Message</th>
           <td mat-cell class="data-cell" *matCellDef="let row">
-            <pre>{{ row.message }}</pre>
+            <pre *ngIf="row.error === true" style="color: red">{{ row.message }}</pre>
+            <pre *ngIf="row.error === false">{{ row.message }}</pre>
           </td>
         </ng-container>
 

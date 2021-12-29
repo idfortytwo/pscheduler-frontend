@@ -47,6 +47,7 @@ export class ExecutionOutputLogComponent implements OnInit, OnDestroy {
       this.dataSource.data = [...this.dataSource.data]
 
       this.lastExecutionOutputLogID = res.last_execution_output_log_id
+      console.log(res)
       if (res.status != 'started' && res.status != null) {
         this.refreshSub.unsubscribe()
         this.executionFinished = true

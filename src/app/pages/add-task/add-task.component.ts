@@ -65,7 +65,7 @@ export class AddTaskComponent implements OnInit {
 
       switch (this.triggerTypeControl.value) {
         case 'interval': {
-          task.trigger_args = this.intervalOptions.value
+          task.trigger_args = this.filterNullValuesDict(this.intervalOptions.value)
           break
         }
 
@@ -84,6 +84,21 @@ export class AddTaskComponent implements OnInit {
 
       this.submitTask(task)
     }
+  }
+
+  filterNullValuesDict(args: any) {
+    let filtered: any = {};
+    for (let key in args) {
+      if (args[key]) {
+        filtered[key] = args[key];
+      }
+    }
+    return filtered
+  }
+
+  formatDate(date: Date): string {
+    const datePipe = new DatePipe("en-US");
+    return <string>datePipe.transform(date, 'YYYY-MM-dd HH:mm:ss') + '.000000'
   }
 
   submitTask(task: Task) {

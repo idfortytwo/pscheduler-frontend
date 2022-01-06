@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
 import { Task } from "../../shared/data-models"
 import { ApiService } from "../../shared/api.service";
 import { Router } from "@angular/router";
+import { DatePipe } from "@angular/common";
 
 @Component({
   selector: 'app-add-task',
@@ -77,7 +78,7 @@ export class AddTaskComponent implements OnInit {
 
         case 'date': {
           if (!this.dateControl.hasError('required'))
-            task.trigger_args = this.dateControl.value
+            task.trigger_args = this.formatDate(this.dateControl.value)
           break
         }
       }

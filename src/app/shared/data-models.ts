@@ -24,8 +24,8 @@ export interface CronArgs {
   cron: string
 }
 
-export interface ExecutionLog {
-  execution_log_id: number
+export interface ProcessLog {
+  process_log_id: number
   task_id: number
   status: string
   start_date: Date
@@ -33,9 +33,9 @@ export interface ExecutionLog {
   return_code: number
 }
 
-export interface ExecutionOutputLog {
-  execution_output_log_id: number
-  execution_log_id: number
+export interface OutputLog {
+  output_log_id: number
+  process_log_id: number
   message: string
   time: Date
   error: boolean

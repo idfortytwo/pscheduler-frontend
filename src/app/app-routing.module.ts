@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'tasks/edit/:task_id', component: EditTaskComponent },
   { path: 'executors', component: TaskExecutorTableComponent },
   { path: 'execution', component: ExecutionLogComponent },
-  { path: 'execution/output/:execution_log_id', component: ExecutionOutputLogComponent },
+  { path: 'execution/output/:process_log_id', component: ExecutionOutputLogComponent },
   { path: '**', redirectTo: 'tasks' }
 ];
 

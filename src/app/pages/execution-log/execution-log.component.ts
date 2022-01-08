@@ -4,7 +4,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
 import { MatPaginator, PageEvent } from "@angular/material/paginator";
 import { interval, Subscription } from "rxjs";
-import { ExecutionLog } from "../../shared/data-models";
+import { ProcessLog } from "../../shared/data-models";
 
 
 @Component({
@@ -13,8 +13,8 @@ import { ExecutionLog } from "../../shared/data-models";
   styleUrls: ['./execution-log.component.css']
 })
 export class ExecutionLogComponent implements OnInit, AfterViewInit, OnDestroy {
-  columnDefs: string[] = ['execution_log_id', 'task_id', 'status', 'start_date', 'finish_date', 'return_code']
-  dataSource: MatTableDataSource<ExecutionLog> = new MatTableDataSource<ExecutionLog>()
+  columnDefs: string[] = ['process_log_id', 'task_id', 'status', 'start_date', 'finish_date', 'return_code']
+  dataSource: MatTableDataSource<ProcessLog> = new MatTableDataSource<ProcessLog>()
   refreshSub!: Subscription
 
   @ViewChild(MatPaginator) paginator!: MatPaginator
@@ -26,10 +26,10 @@ export class ExecutionLogComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit() {
-    this.fetchExecutionLogs()
+    this.fetchProcessLogs()
 
     this.refreshSub = interval(1000).subscribe(() => {
-      this.fetchExecutionLogs()
+      this.fetchProcessLogs()
     })
   }
 
@@ -37,9 +37,9 @@ export class ExecutionLogComponent implements OnInit, AfterViewInit, OnDestroy {
     this.refreshSub.unsubscribe()
   }
 
-  fetchExecutionLogs() {
-    this.api.getExecutionLogs().subscribe((res) => {
-      this.dataSource.data = res.execution_logs
+  fetchProcessLogs() {
+    this.api.getProcessLogs().subscribe((res) => {
+      this.dataSource.data = res.process_logs
       this.dataSource.paginator = this.paginator
     })
   }
@@ -51,10 +51,11 @@ export class ExecutionLogComponent implements OnInit, AfterViewInit, OnDestroy {
   pageChanged(event: PageEvent) {
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
-    this.fetchExecutionLogs()
+    this.fetchProcessLogs()
   }
 
-  getMoreInfo(executionLogID: number) {
-    this.router.navigate(['execution', 'output', executionLogID]).then()
+  getMoreInfo(processLogID: number) {
+    console.log(processLogID)
+    this.router.navigate(['execution', 'output', processLogID]).then()
   }
 }

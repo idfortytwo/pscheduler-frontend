@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
-import { ExecutionLog, ExecutionOutputLog, Task, TaskExecutor } from "./data-models";
+import { ProcessLog, OutputLog, Task, TaskExecutor } from "./data-models";
 import { HttpClient, HttpParams } from "@angular/common/http";
 
 @Injectable({
@@ -51,23 +51,23 @@ export class ApiService {
        this.baseUrl + '/stop_executor/' + taskID, {})
   }
 
-  getExecutionLogs(): Observable<{'execution_logs': ExecutionLog[]}> {
+  getProcessLogs(): Observable<{'process_logs': ProcessLog[]}> {
     return this.http.get<any>(
-      this.baseUrl + '/execution_log'
+      this.baseUrl + '/process_log'
     )
   }
 
-  getExecutionOutputLogs(executionLogID: number, lastExecutionOutputLogID: number):
+  getOutputLogs(outputLogID: number, lastOutputLogID: number):
       Observable<{
-        'execution_output_logs': ExecutionOutputLog[],
-        'last_execution_output_log_id': number,
+        'output_logs': OutputLog[],
+        'last_output_log_id': number,
         'status': string,
         'return_code': number
       }> {
-    let params = new HttpParams().set('last_execution_output_log_id', lastExecutionOutputLogID)
+    let params = new HttpParams().set('last_output_log_id', lastOutputLogID)
 
     return this.http.get<any>(
-      this.baseUrl + '/execution/output/' + executionLogID,
+      this.baseUrl + '/execution/output/' + outputLogID,
       { params: params }
     )
   }

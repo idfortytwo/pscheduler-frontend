@@ -1,6 +1,11 @@
 # Process Scheduler - Frontend
 WebUI allowing creation and edition of tasks, scheduling execution and process monitoring
 
+## Other repositories:
+- [Main repository](https://github.com/idfortytwo/pscheduler-prod)
+- [Backend repository](https://github.com/idfortytwo/pscheduler-backend)
+
+## Examples
 ### Managing execution
 ![](https://user-images.githubusercontent.com/17951356/172226516-aa6bf3ee-c9b4-4ab7-a082-eda60e7c5f4f.png)
 ### Task creation
